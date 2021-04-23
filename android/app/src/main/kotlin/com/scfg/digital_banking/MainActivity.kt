@@ -1,4 +1,4 @@
-package com.clean.architecture
+package com.scfg.digital_banking
 
 import io.flutter.embedding.android.FlutterActivity
 

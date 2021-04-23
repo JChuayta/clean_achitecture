@@ -1,4 +1,4 @@
-# clean_architecture_example
+# digital_banking
 
 A new Flutter project.
 

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.clean.architecture">
+    package="com.scfg.digital_banking">
    <application
-        android:label="clean_architecture_example"
+        android:label="digital_banking"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,6 +1,6 @@
 {
-    "name": "clean_architecture_example",
-    "short_name": "clean_architecture_example",
+    "name": "digital_banking",
+    "short_name": "digital_banking",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
