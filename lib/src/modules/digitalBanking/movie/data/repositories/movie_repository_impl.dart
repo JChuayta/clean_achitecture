@@ -5,7 +5,7 @@ import '../datasources/movie_remote_data_sources.dart';
 import '../../domain/entities/movie.dart';
 import '../../domain/repositories/movie_repository.dart';
 
-typedef Future<Movie> _movieLocalOrRemote();
+typedef Future<List<Movie>> _movieLocalOrRemote();
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -17,12 +17,15 @@ class MovieRepositoryImpl implements MovieRepository {
   });
 
   @override
-  Future<Movie> getMovie() async =>
-      await _getMovie(() => remoteDataSource.getMovie());
+  Future<List<Movie>> getMovie() async => await remoteDataSource.getMovie();
 
-  Future<Movie> _getMovie(_movieLocalOrRemote movieLocalOrRemote) async {
+  // @override
+  // Future<List<Movie>> getMovie() async =>
+  //     await _getMovie(() => remoteDataSource.getMovie());
+
+  Future<List<Movie>> _getMovie(_movieLocalOrRemote movieLocalOrRemote) async {
     try {
-      final remoteMovie = await movieLocalOrRemote();
+      final List<Movie> remoteMovie = await movieLocalOrRemote();
       localDataSource.cacheMovie(remoteMovie);
       return remoteMovie;
     } on ServerException {

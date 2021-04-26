@@ -11,14 +11,14 @@
 class Movie {
   bool adult;
   String backdropPath;
-  List<int> genreIds;
+  // List<int> genreIds;
   int id;
   String originalLanguage;
   String originalTitle;
   String overview;
   double popularity;
   String posterPath;
-  DateTime releaseDate;
+  // DateTime releaseDate;
   String title;
   bool video;
   double voteAverage;
@@ -27,14 +27,14 @@ class Movie {
   Movie({
     this.adult,
     this.backdropPath,
-    this.genreIds,
+    // this.genreIds,
     this.id,
     this.originalLanguage,
     this.originalTitle,
     this.overview,
     this.popularity,
     this.posterPath,
-    this.releaseDate,
+    // this.releaseDate,
     this.title,
     this.video,
     this.voteAverage,

@@ -5,8 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class MovieLocalDataSource {
-  Future<MovieModel> getLastMovie();
-  Future<void> cacheMovie(MovieModel movieToCache);
+  Future<List<MovieModel>> getLastMovie();
+  Future<void> cacheMovie(List<MovieModel> movieToCache);
 }
 
 const CACHED_MOVIE = 'CACHED_MOVIE';
@@ -17,19 +17,19 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   MovieLocalDataSourceImpl({@required this.sharedPreferences});
 
   @override
-  Future<MovieModel> getLastMovie() {
+  Future<List<MovieModel>> getLastMovie() {
     final jsonString = sharedPreferences.getString(CACHED_MOVIE);
     if (jsonString != null)
-      return Future.value(MovieModel.fromJson(json.decode(jsonString)));
-    // else
-    // throw CacheException();
+      return Future.value(json.decode(jsonString).then((data) => data['results']
+          .map<MovieModel>((item) => MovieModel.fromJson(item))
+          .toList()));
   }
 
   @override
-  Future<void> cacheMovie(MovieModel triviaToCache) {
+  Future<void> cacheMovie(List<MovieModel> movieToCache) {
     return sharedPreferences.setString(
       CACHED_MOVIE,
-      json.encode(triviaToCache.toJson()),
+      json.encode(movieToCache.first.toJson()),
     );
   }
 }

@@ -1,35 +1,35 @@
 part of 'movie_bloc.dart';
 
-class MovieState {
-  Movie movie;
+// class MovieState {
+//   List<Movie> movie;
 
-  MovieState({Movie movie}) : this.movie = movie ?? new Movie();
+//   MovieState({List<Movie> movie}) : this.movie = movie ?? [];
 
-  MovieState getMovie() => MovieState();
+//   MovieState getMovie() => MovieState();
 
-  MovieState initState() => new MovieState();
+//   MovieState initState() => new MovieState();
 
-  MovieState copyWith({Movie movies}) => MovieState(
-        movie: movies ?? this.movie,
-      );
+//   MovieState copyWith({Movie movies}) => MovieState(
+//         movie: movies ?? this.movie,
+//       );
+// }
+
+abstract class MovieState {
+  MovieState([List props = const <dynamic>[]]);
 }
 
-// abstract class MovieState {
-//   MovieState([List props = const <dynamic>[]]);
-// }
+class Empty extends MovieState {}
 
-// class Empty extends MovieState {}
+class Loading extends MovieState {}
 
-// class Loading extends MovieState {}
+class Loaded extends MovieState {
+  final List<Movie> movie;
 
-// class Loaded extends MovieState {
-//   final Movie movie;
+  Loaded({this.movie});
+}
 
-//   Loaded({this.movie});
-// }
+class Error extends MovieState {
+  final String errorMessage;
 
-// class Error extends MovieState {
-//   final String errorMessage;
-
-//   Error({this.errorMessage});
-// }
+  Error({this.errorMessage});
+}

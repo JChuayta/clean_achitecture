@@ -11,21 +11,18 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   MovieBloc({
     GetMovies getmovies,
   })  : getMovies = getmovies,
-        super(null);
+        super(Empty());
 
   @override
   Stream<MovieState> mapEventToState(MovieEvent event) async* {
     if (event is GetMovie) {
-      // yield state.initState();
-      // final movie = await getMovies();
-      // yield* _LoadedState(movie);
-      yield state.copyWith(
-        movies: event.movies,
-      );
+      yield Loading();
+      final List<Movie> movie = await getMovies();
+      yield* _LoadedState(movie);
     }
   }
 
-  // Stream<MovieState> _LoadedState(Movie movie) async* {
-  //   yield Loaded(movie: movie);
-  // }
+  Stream<MovieState> _LoadedState(List<Movie> movie) async* {
+    yield Loaded(movie: movie);
+  }
 }
